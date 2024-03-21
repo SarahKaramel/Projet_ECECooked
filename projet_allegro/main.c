@@ -6,9 +6,9 @@
 typedef struct creation_personnage {
     int position_x;
     int position_y;
-    int tomate;
     int riz;
     int saumon;
+    int onigiri;
     int avocat;
     int algue;
     int maki;
@@ -115,12 +115,12 @@ int main() {
     }
 
 // Charger l'image depuis un fichier
-  /*  BITMAP *imageinvisble1 = load_tga("../ressource/image/imageinvisble1.tga", NULL);
-    if (!imageinvisble1) {
-        allegro_message("../ressource/image/map1.tga");
-        return 1;
-    }
-*/
+    /*  BITMAP *imageinvisble1 = load_tga("../ressource/image/imageinvisble1.tga", NULL);
+      if (!imageinvisble1) {
+          allegro_message("../ressource/image/map1.tga");
+          return 1;
+      }
+  */
     // Créer un double buffer
     BITMAP *page = create_bitmap(SCREEN_W, SCREEN_H);
     clear(page);
@@ -148,6 +148,11 @@ int main() {
 
     bool rectangle_visible = true;
     bool POSE = true;
+    perso1.maki =0;
+    if (perso1.maki  ==1){
+
+
+    }
     while (!key[KEY_ESC]) {
         // Effacer l'écran
         clear(page);
@@ -155,10 +160,32 @@ int main() {
 
         // Afficher la souris à l'écran
         show_mouse(page);
+        int i =0;
+        int j = 0;
+        int tab[i][j]=[[0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0,0,0,0,0,0],];
+        [0,0,0,0,0,0,0,0,0,0,0,0],
+
+        for (int i = 0; i < 11; ++i) {
+            for (int j = 0; j < 19; ++j) {
+                switch (tab[i][j]) {
+                    case 0:
+                        draw_trans_sprite(page, imagemaki, i*74, j*68);
+                    case 1:
+                        rectfill(page, x2, y2, x2 + taillex, y2 + tailley, makecol(13, 255, 145));
+                    case 2 :
+                        draw_trans_sprite(page, imagemaki, x*i*74, y*68);
+
+
+                }
+            }
+
+        }
 
         // Boucle de jeu
         textprintf_ex(page, font, 0, 250, makecol(255, 255, 255), -1, "%d Points", points);
-      //  draw_trans_sprite(page, imageinvisble1,invisiblex2,invisibley2);
+        //  draw_trans_sprite(page, imageinvisble1,invisiblex2,invisibley2);
         blit(imagemap, page, 0, 0, mapx, mapy, imagemap->w, imagemap->h);
         rectfill(page, x, y, x + taillex, y + tailley, makecol(255, 255, 255));
         rectfill(page, x2, y2, x2 + taillex, y2 + tailley, makecol(13, 255, 145));
@@ -169,11 +196,10 @@ int main() {
         }
 
 
-       if( POSE != (key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D] || key[KEY_S]&&key[KEY_D] || key[KEY_S]&&key[KEY_A] || key[KEY_W]&&key[KEY_D] || key[KEY_W]&&key[KEY_A])){
-           draw_trans_sprite(page,imagePOSE,  x1, y1);
+        if( POSE != (key[KEY_W] || key[KEY_A] || key[KEY_S] || key[KEY_D] || key[KEY_S]&&key[KEY_D] || key[KEY_S]&&key[KEY_A] || key[KEY_W]&&key[KEY_D] || key[KEY_W]&&key[KEY_A])){
+            draw_trans_sprite(page,imagePOSE,  x1, y1);
 
-       }
-
+        }
         // Mouvement de l'objet contrôlé par les touches de clavier
         if (x1 < 0) {
             x1 = 0;  // Empêcher de sortir à gauche
@@ -246,7 +272,7 @@ int main() {
         else if (key[KEY_D]) {
             x1++;
             draw_trans_sprite( page,imageDROITE, x1, y1);
-
+            // draw_trans_sprite(page, image)
         }
 
         else if (key[KEY_DOWN]) {
@@ -282,16 +308,23 @@ int main() {
         }
 
         // Si les deux rectangles ont au moins un pixel en commun et si la touche "C" est pressée, rendre le rectangle invisible
-        if ((x1 <= xobjet1 + taillex && x1 + taillex >= xobjet1 && y1 <= yobjet1 + tailley && y1 + tailley >= yobjet1) && key[KEY_C]) {
+        if ((x1 <= xobjet1 + taillex && x1 + taillex >= xobjet1 && y1 <= yobjet1 + tailley && y1 + tailley >= yobjet1) && key[KEY_C] && perso1.maki == 0) {
             rectangle_visible = false;
 
             perso1.maki = 1;
+
+            while (key[KEY_C]);
         }
 
         //si plus maki essaye de le refaire apparaitre
-        if(rectangle_visible == false && key[KEY_C] ) {
+        if(rectangle_visible == false && key[KEY_C]&& perso1.maki>0 ) {
             perso1.maki = 0;
-            draw_trans_sprite( page,imagemaki, x1 + taillex + 1, y1);
+
+            xobjet1 = x1 ;
+            yobjet1 = y1;
+            rectangle_visible = true;
+            while (key[KEY_C]);
+
         }
 
         // Faire bouger le texte vers la droite
