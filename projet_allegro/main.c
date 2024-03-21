@@ -14,7 +14,7 @@ typedef struct creation_personnage {
     int maki;
     int assiette;
 } creation_personnage;
-
+//jrglotg
 
 int main() {
     allegro_init();
