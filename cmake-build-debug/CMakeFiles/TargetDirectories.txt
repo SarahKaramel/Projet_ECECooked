@@ -1,3 +1,3 @@
-C:/Users/rapha/CLionProjects/Projet_ECECooked/cmake-build-debug/CMakeFiles/projet_allegro.dir
-C:/Users/rapha/CLionProjects/Projet_ECECooked/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/rapha/CLionProjects/Projet_ECECooked/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/adele/Cours Informatique/Projet_ECECooked/cmake-build-debug/CMakeFiles/projet_allegro.dir
+C:/Users/adele/Cours Informatique/Projet_ECECooked/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/adele/Cours Informatique/Projet_ECECooked/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -21,7 +21,7 @@ int main() {
     allegro_init();
     install_mouse();
     install_keyboard();
-
+    printf("jojo");
 
     set_color_depth(32); // Définir la profondeur de couleur à 32 bits RGBA
     //activer la prise en charge de la transparence
