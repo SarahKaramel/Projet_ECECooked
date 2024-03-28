@@ -23,7 +23,6 @@ int main() {
     install_keyboard();
 
 
-    printf("Sarah karamel");
     set_color_depth(32); // Définir la profondeur de couleur à 32 bits RGBA
     //activer la prise en charge de la transparence
     set_alpha_blender();
