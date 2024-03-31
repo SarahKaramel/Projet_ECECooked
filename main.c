@@ -108,7 +108,11 @@ int main() {
         allegro_message("../ressource/image/map1.tga");
         return 1;
     }
-
+    BITMAP *menu = load_tga("../ressource/image/menu.tga", NULL);
+    if (!menu) {
+        allegro_message("../ressource/image/map1.tga");
+        return 1;
+    }
     BITMAP *saumonneutre = load_tga("../ressource/image/saumon_pas_decoupe.tga", NULL);
     if (!saumonneutre) {
         allegro_message("../ressource/image/map1.tga");
@@ -253,7 +257,7 @@ int main() {
         if (key[KEY_C])
             attraper_objet(&perso1, page, tab, tabObjet);
         afficher_personage(&perso2, page);
-        if (key[KEY_ENTER])
+        if (key[KEY_L])
             attraper_objet(&perso2, page, tab, tabObjet);
 /////////////////////////////////////////////////////////////////////////////////////////
         long long now_seconds = time(NULL);// je recupere lheure actuelle nouvelle
